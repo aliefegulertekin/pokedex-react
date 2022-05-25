@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    
+}
+
+.header h1 {
+    font-size: 3rem;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
