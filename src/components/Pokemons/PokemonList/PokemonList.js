@@ -1,16 +1,19 @@
 import PokemonElement from "../PokemonElement/PokemonElement";
 import classes from './PokemonList.module.css';
+import {useGlobalContext} from '../../../context';
 
-const PokemonList = (props) => {
+const PokemonList = ({pokemon}) => {
+
+    // const {allPokemons} = useGlobalContext();
 
     return(<ul className={classes['pokemon-list']}>
-        {props.pokemons.map((pokemon, index) => <PokemonElement
+        {pokemon ? pokemon.map((pokemon, index) => <PokemonElement
         name = {pokemon.name}
         id = {pokemon.id}
         img = {pokemon.img}
         type = {pokemon.type}
         key = {index}
-        />)}
+        />) : [] }
     </ul>)
 }
 

@@ -2,14 +2,18 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import PokemonList from './components/Pokemons/PokemonList/PokemonList';
+import {useGlobalContext} from './context';
 
 function App() {
 
-  const [allPokemons, setAllPokemons] = useState([])
+  const [allPokemons, setAllPokemons] = useState([]);
+  const {pokemonList, setPokemonList }= useGlobalContext();
 
   useEffect(()=>{
     getPokemons();
   }, [])
+
+  
 
   const getPokemons = async () => {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=120');
@@ -30,20 +34,25 @@ function App() {
       type:  data.types[0].type.name
     }
     // console.log(pokemonInfo.name);
-
+    setPokemonList(prevState => [...prevState, pokemonInfo]);
     setAllPokemons(prevState => [...prevState, pokemonInfo]);
   } 
 
 
   const filteredPokemonHandler = (word) => {
-    const filteredPokemon = allPokemons.filter(d => d.name.includes(word))
+    const filteredPokemon = pokemonList.filter(d => d.name.includes(word))
     setAllPokemons(filteredPokemon);
+  }
+
+  const allPokemonHandler = () => {
+    setAllPokemons(pokemonList);
   }
 
   return (
     <div className="App">
       <Header filterPokemon={filteredPokemonHandler}/>
-      <PokemonList pokemons={allPokemons}/>
+      <button className='all-pokemon-btn' onClick={allPokemonHandler} >All</button>
+      <PokemonList pokemon = {allPokemons}/>
     </div>
   );
 }

@@ -4,3 +4,14 @@
   align-items: center;
   justify-content: center;
 }
+
+.all-pokemon-btn {
+  margin-left: 1rem;
+  height: 2.5rem;
+  margin-top: 1rem;
+  padding: 0rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
