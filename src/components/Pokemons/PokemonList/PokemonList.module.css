@@ -8,3 +8,10 @@
     justify-content: space-between;
     margin-top: 3rem;
 }
+
+@media (max-width: 500px){
+    .pokemon-list {
+        width: 100%;
+      flex-direction: column;
+    }
+  }

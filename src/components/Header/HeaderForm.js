@@ -11,6 +11,7 @@ const HeaderForm = props => {
             return;
         }
         props.filterPokemon(pokemonWord);
+        setPokemonWord('');
     };
 
     const inputChangeHandler = (e) => {
@@ -18,7 +19,7 @@ const HeaderForm = props => {
     }
 
     return (<form className={classes.form} onSubmit={pokemonSearchHandler}>
-        <input onChange={inputChangeHandler}/>
+        <input value={pokemonWord} onChange={inputChangeHandler}/>
         <button type='submit' >Search</button>
     </form>)
 }

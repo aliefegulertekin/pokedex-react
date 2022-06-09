@@ -6,9 +6,11 @@ import {useGlobalContext} from './context';
 
 function App() {
 
-  const [allPokemons, setAllPokemons] = useState([]);
   const {pokemonList, setPokemonList }= useGlobalContext();
 
+  const [allPokemons, setAllPokemons] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
+  
   useEffect(()=>{
     getPokemons();
   }, [])
@@ -18,8 +20,9 @@ function App() {
   const getPokemons = async () => {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=120');
     const data = await response.json();
-    console.log(data);
-    data.results.forEach(pokemon => {
+    
+
+    data.results.map(pokemon => {
       getPokemonDetail(pokemon);
     });
   }
